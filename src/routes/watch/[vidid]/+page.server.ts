@@ -20,7 +20,7 @@ export async function load({ params }) {
 	const inputStream = await get(params.vidid);
 	const subData: Node[] = [];
 
-	inputStream?.pipe(parse())
+	await inputStream?.pipe(parse())
 		.on('data', (node: Node) => {
 			subData.push(node)
 		})
