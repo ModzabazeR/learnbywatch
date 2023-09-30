@@ -1,0 +1,1724 @@
+﻿1
+00:00:00,380 --> 00:00:03,080
+IP address... พวกมันอย่างกับเวทมนตร์เลยล่ะ
+พวกมันทำให้อินเตอร์เน็ตใช้งานได้
+
+2
+00:00:03,080 --> 00:00:06,240
+และนั่นคือสาเหตุว่าทำไม
+สิ่งของแทบทุกอย่างในบ้านผมถึงมี IP address
+
+3
+00:00:06,460 --> 00:00:11,250
+โทรศัพท์ของผม นาฬิกา หลอดไฟ
+เตาอบ รถยนต์
+
+4
+00:00:11,550 --> 00:00:14,506
+ลูก ๆ ของผม ส้วมของผม
+เอ่อ.. จริง ๆ ก็ยังไม่มีหรอก
+
+5
+00:00:14,570 --> 00:00:16,218
+บอกตามตรงนะ ไม่ได้อยากมาจับส้วมให้แบบนี้เลย
+
+6
+00:00:16,478 --> 00:00:20,490
+แต่ว่าอะไรคือ IP address แล้วอะไรที่ทำให้มันเวิร์คกันล่ะ?
+มาคุยเรื่องนั้นกันดีกว่าครับ
+
+7
+00:00:20,630 --> 00:00:21,010
+เอาจริงแล้ว
+
+8
+00:00:21,010 --> 00:00:25,200
+นี่คือคลิปแรกของซีรีส์ที่ผมจะเรียกว่า "คุณอ่อนเรื่อง subnetting"
+
+9
+00:00:25,200 --> 00:00:27,920
+เพราะเราทุกคนก็ค่อนข้างจะอ่อนเรื่อง subnetting ซักนิดใช่ไหมล่ะครับ?
+
+10
+00:00:27,920 --> 00:00:30,360
+และในซีรีส์นี้เราจะเริ่มต้นด้วยคำว่า
+"เห้ย... IP Address มันคืออะไรวะ"
+
+11
+00:00:30,360 --> 00:00:32,800
+ซึ่งเป็นเรื่องที่เราจะพูดถึงกันในวันนี้
+
+12
+00:00:32,800 --> 00:00:36,400
+และเมื่อจบหลักสูตรแล้ว คุณจะได้สกิลนินจาจอมยุทธ์สาขา subnetting
+หรืออะไรก็ตามที่อยากเรียกไปครอง
+
+13
+00:00:36,400 --> 00:00:38,600
+คุณจะต้องเก่งในการทำ subnetting
+นั่นแหละคือเป้าหมายของผม
+
+14
+00:00:38,660 --> 00:00:40,560
+และถ้าเกิดว่าคุณยังไม่รู้
+
+15
+00:00:40,560 --> 00:00:44,550
+การทำความเข้าใจเรื่อง IP addressing และ subnetting เนี่ย
+เป็นเหมือนทักษะที่จำเป็นสำหรับทุกเรื่องใน IT เลย
+
+16
+00:00:44,620 --> 00:00:48,870
+แบบว่า ในทุกอาชีพเลย การทำระบบเครือข่าย
+การแฮ็กอย่างมีจริยธรรม ระบบความปลอดภัย คลาวด์
+
+17
+00:00:49,210 --> 00:00:53,110
+ทุกเรื่องมี IP Address เป็นส่วนอยู่ในนั้น
+และรวมถึง Subnet อันโอชะของเราด้วย
+
+18
+00:00:53,110 --> 00:00:56,830
+This video is also part of my CCNA
+series, sponsored by boon software.
+
+19
+00:00:57,170 --> 00:01:01,950
+If you wanna get your CCNA or your CCMP
+two of the best it certifications in the
+
+20
+00:01:01,950 --> 00:01:06,660
+world, boon is what you want to use from
+courseware to labs to practice exams.
+
+21
+00:01:06,810 --> 00:01:08,820
+They have you covered. They'll
+get you prepped and ready.
+
+22
+00:01:09,020 --> 00:01:12,660
+I personally use boon to pass my
+t-shirt exam, which is very, very hard.
+
+23
+00:01:12,950 --> 00:01:16,900
+Cisco networking exam and boon
+was amazing. And not to mention,
+
+24
+00:01:16,900 --> 00:01:19,380
+they have a great amount
+of content on subnetting.
+
+25
+00:01:19,380 --> 00:01:21,060
+So as you're watching this
+video and this series,
+
+26
+00:01:21,160 --> 00:01:24,170
+and you wanna get extra
+practice, dude, check out boon.
+
+27
+00:01:24,190 --> 00:01:26,810
+And it's not just CCNA and
+CC and P they have security.
+
+28
+00:01:26,810 --> 00:01:30,130
+Plus they've got C H all kinds
+of stuff. They have the best,
+
+29
+00:01:30,130 --> 00:01:33,690
+like I'm not kidding the best practice
+exams in the industry. So if you're like,
+
+30
+00:01:33,690 --> 00:01:36,810
+yeah, yeah, I'm not sure if I'm gonna
+pass security. Plus they'll tell you,
+
+31
+00:01:37,550 --> 00:01:40,690
+try their practice exam. And
+they'll tell you, anyways,
+
+32
+00:01:40,990 --> 00:01:42,850
+IP หรือ Internet Protocol Address
+
+33
+00:01:42,850 --> 00:01:45,920
+มันก็คล้าย ๆ กับเบอร์โทรศัพท์
+ที่เรากำหนดให้กับอุปกรณ์แต่ละชิ้นนี่แหละครับ
+
+34
+00:01:45,920 --> 00:01:47,680
+อย่างถ้าส้วมของผมต้องการส่งข้อความไปหา
+
+35
+00:01:47,680 --> 00:01:48,800
+Apple Watch ว่าผมเป็นไงอยู่ในห้องน้ำมั่ง
+
+36
+00:01:48,820 --> 00:01:51,440
+มันสามารถทำได้แน่นอน เพราะพวกมันมีช่องทางในการสื่อสารหากันครับ
+
+37
+00:01:51,440 --> 00:01:55,080
+พวกมันมีสิ่งที่คล้ายกับเบอร์โทรศัพท์
+เราใช้เบอร์โทรศัพท์ในการส่งข้อความหากัน
+
+38
+00:01:55,140 --> 00:01:59,960
+แต่พวกอุปกรณ์เนี่ยไม่ใช่ครับ พวกมันใช้ IP address
+และแน่นอนว่ามีข้อแตกต่างนิดหน่อยอยู่แหละ
+
+39
+00:01:59,960 --> 00:02:01,320
+แล้วเราจะมาดูกันว่ามันทำงานกันประหลาดขนาดไหน
+
+40
+00:02:01,580 --> 00:02:03,960
+แต่ตอนนี้รู้ไว้ก่อนก็พอว่าถ้าไม่มี IP address
+พวกมันก็คุยกันไม่ได้
+
+41
+00:02:04,530 --> 00:02:06,910
+เราถึงต้องกำหนดให้มัน
+มันคือสิ่งที่เปิดให้มีช่องทางการสื่อสารกัน
+
+42
+00:02:07,130 --> 00:02:10,190
+และยังไม่ได้พูดถึงเรื่องที่ว่า มันสามารถทำให้
+อุปกรณ์ต่าง ๆ ของเราเชื่อมต่ออินเตอร์เน็ตได้ด้วย
+
+43
+00:02:10,190 --> 00:02:13,350
+ทุกคนต้องอยากให้ทุกอย่างมาเชื่อมต่อกับส้วมของเราได้
+อยู่แล้วใช่ไหมล่ะ? เอ้อ!
+
+44
+00:02:13,370 --> 00:02:16,110
+เพราะงั้นตอนนี้เรารู้แล้วนะว่าถ้าอุปกรณ์นึงต้องการคุยกับอีกอุปกรณ์
+
+45
+00:02:16,130 --> 00:02:17,230
+มันจำเป็นต้องมี IP Address
+
+46
+00:02:17,740 --> 00:02:19,910
+ซึ่งนั่นหมายความว่าอุปกรณ์ที่คุณใช้
+ดูวิดีโอของผมอยู่ตอนนี้เนี่ย
+
+47
+00:02:20,370 --> 00:02:24,510
+มันก็มี IP Address เพราะมันกำลังคุยกับ YouTube
+
+48
+00:02:24,620 --> 00:02:27,740
+แล้ว YouTube ก็ตอบกลับมาเช่นกัน
+มาหา IP Address ของคุณกันเถอะครับ
+
+49
+00:02:27,740 --> 00:02:28,820
+ไม่ว่าคุณจะใช้อะไร เราก็มีทางหามัน
+
+50
+00:02:28,830 --> 00:02:31,820
+บน Windows เราจะใช้โปรแกรมที่มีชื่อว่า
+ CMD หรือ command prompts
+
+51
+00:02:31,840 --> 00:02:34,780
+ลองไปเสิร์ชหาแล้วเปิดดูนะครับ
+ส่วนบน Mac และ Linux มันจะเป็นสิ่งที่เรียกว่า Terminal
+
+52
+00:02:35,020 --> 00:02:37,460
+ให้ใช้โปรแกรมนั้นนะครับ
+สำหรับโทรศัพท์และอุปกรณ์อื่นๆ
+
+53
+00:02:37,530 --> 00:02:42,100
+อีกเดี๋ยวผมจะโชว์ให้คุณดูเอง บน Windows
+เข้ามาแล้วให้พิมพ์ว่า ipconfig
+
+54
+00:02:42,280 --> 00:02:47,210
+คำเดียว แค่นั้นเลย เสร็จแล้วกดปุ่ม Enter
+ส่วนบน Linux พิมพ์ว่า ifconfig
+
+55
+00:02:47,430 --> 00:02:50,010
+แค่คำเดียว กดปุ่ม Enter
+ส่วนบนโทรศัพท์ของคุณ ให้เข้าไปในแอปตั้งค่า
+
+56
+00:02:50,010 --> 00:02:53,530
+เข้าไปในหน้า wifi กดตาม UI ไป แล้วคุณจะเจอ
+
+57
+00:02:53,640 --> 00:02:57,210
+นี่ไง IP address ของคุณ และถ้ากลับมาดู
+ที่ Windows นี่คือ IP Address ของคุณ
+
+58
+00:02:57,270 --> 00:02:59,360
+ชื่อมันบ่งบอกเลยว่าเป็น IPv4 Address ทางซ้ายนี้
+
+59
+00:02:59,390 --> 00:03:01,960
+แต่อย่าไปสับสนกับคำว่า v4 นะครับ
+
+60
+00:03:01,960 --> 00:03:04,800
+ช่างมันไปก่อน ตอนนี้มาคุยเรื่อง
+IP Address เจ้ากรรมของเรากันดีกว่า
+
+61
+00:03:04,820 --> 00:03:08,320
+ไอ้หมอนี่มันหน้าตาแปลกๆ แถมยังดูโคตรยากอีก
+มันคือเลขอะไรไม่รู้มาเรียงกัน
+
+62
+00:03:08,510 --> 00:03:12,680
+คั่นด้วยจุดสามจุด
+แค่นั้นก็แปลกพอแล้ว
+
+63
+00:03:12,680 --> 00:03:15,840
+แล้วเรายังมีไอ้หมอนี่ แล้วก็ไอ้หมอนี่อีก
+พวกมันมาทำอะไรกัน?
+
+64
+00:03:15,870 --> 00:03:18,440
+ก็ ง่าย ๆ เลยพวกมันคือเหล่าเพื่อนรัก
+ของเจ้า IP Address นี่แหละครับ
+
+65
+00:03:18,510 --> 00:03:22,030
+เราจะพูดถึงสองตัวนี้ในอีกไม่นาน มาดูเจ้าหมอนี่กันดีกว่า
+นาย Subnet Mask
+
+66
+00:03:22,170 --> 00:03:24,630
+อย่างน้อยก็เป็นชื่อเรียกใน Windows ที่เราใช้อยู่
+ถ้าเป็นใน Mac หรือ Linux
+
+67
+00:03:24,630 --> 00:03:26,350
+คุณอาจจะเจอคำว่า netmask แทน ก็คืออันเดียวกันนี่แหละ
+
+68
+00:03:26,370 --> 00:03:29,390
+ส่วนสำหรับเจ้านี้
+มันคือคุณหญิง Default Gateway
+
+69
+00:03:29,610 --> 00:03:33,430
+ซึ่งอาจจะมีชื่ออื่น ๆ เช่น Default Router หรือแค่
+Router เลยก็ได้ สำหรับแก๊งนี้ก็ประมาณนี้แหละครับ
+
+70
+00:03:33,440 --> 00:03:34,990
+มาพูดถึงดาวเด่นของเรากันดีกว่า
+
+71
+00:03:35,010 --> 00:03:37,830
+ไอ้หนูที่เราสนใจ เจ้า IP Address
+โดยมาเริ่มจากว่า
+
+72
+00:03:38,370 --> 00:03:41,460
+หมอนี่มันมาได้ยังไงก่อน?
+แล้วอุปกรณ์ของคุณเอาเลขพวกนี้มาจากไหน?
+
+73
+00:03:41,460 --> 00:03:44,260
+ใครเป็นคนให้กับไอ้หนูนี่? มันปลอดภัยไหม?
+ใครเป็นคนมอบเลขพวกนี้ให้กับอุปกรณ์ของคุณ?
+
+74
+00:03:44,260 --> 00:03:46,900
+ซึ่งเอาจริงแล้วนั่นเป็นคำถามที่ดีนะครับ
+เพราะบางครั้งเราสามารถได้ IP Address ที่ไม่ดีได้
+
+75
+00:03:47,050 --> 00:03:50,060
+ไว้สำหรับคลิปอื่นละกัน
+เอาล่ะ ถ้าอย่างนั้นอุปกรณ์ของคุณเอา IP Address มาจากไหน?
+
+76
+00:03:50,060 --> 00:03:53,860
+มันตกลงมาจากท้องฟ้ารึเปล่า?
+อืม ก็ประมาณนั้นแหละ ถ้าคุณใช้ wifi น่ะนะ
+
+77
+00:03:54,040 --> 00:03:55,780
+จะเห็นว่าไม่ว่าจะเป็นบ้านของคุณ
+หรือไม่ว่าจะที่ไหนก็ตาม
+
+78
+00:03:55,780 --> 00:03:58,100
+เรามีสิ่งนี้ที่เรียกว่าเราเตอร์ มันอาจจะดูคุ้นตา
+
+79
+00:03:58,120 --> 00:03:59,220
+อาจจะซ่อนอยู่ในลิ้นชักคุณก็ได้
+
+80
+00:03:59,340 --> 00:04:02,530
+ใต้ดงเสื้อกันหนาวที่คุณเก็บไว้ใส่เดือนธันวา
+ซึ่งบอกตามตรงนะครับ ไปช่วยชีวิตมันเถอะ
+
+81
+00:04:02,530 --> 00:04:04,970
+เอาเสื้อกันหนาวพวกนั้นออกไป
+เขาก็ต้องหายใจเหมือนกัน ข้างในนั้นมันร้อนนะ
+
+82
+00:04:05,190 --> 00:04:07,890
+เราเตอร์เนี่ยคือคุณปัญญา นิรันดร์กุลของเหล่า IP address
+
+83
+00:04:07,980 --> 00:04:10,410
+ทุก ๆ ครั้งที่มีอุปกรณ์เชื่อมต่อกับระบบเครือข่ายของคุณ
+เขาจะบอกว่า เห้ยนี่
+
+84
+00:04:10,410 --> 00:04:13,050
+นี่คือ IP Address นี่คือ IP Address
+สำหรับคุณ สำหรับคุณ และสำหรับคุณ
+
+85
+00:04:13,490 --> 00:04:14,370
+ทุกคนได้ IP Address ไป
+
+86
+00:04:14,470 --> 00:04:18,290
+ซึ่งศาสตร์มืดที่ชื่อว่า DHCP คือกระบวนการที่อยู่เบื้องหลัง
+ที่ทำให้มีการแจก IP ได้
+
+87
+00:04:18,550 --> 00:04:20,760
+ถ้าคุณอยากรู้เพิ่มเติมว่ามันทำงานยังไง
+เราจะมาพูดถึงเรื่องนั้นกันทีหลัง
+
+88
+00:04:20,860 --> 00:04:23,800
+แต่สิ่งที่สำคัญคือ คุณปัญญาเป็นให้ IP Address กับอุปกรณ์ของคุณ
+
+89
+00:04:23,800 --> 00:04:26,160
+นั่นคือประเด็นที่ผมอยากให้คุณได้กลับไปนะ จดลงไปซะ
+
+90
+00:04:26,220 --> 00:04:28,760
+โอเค ทีนี้กลับมาดูที่เจ้า IP Address
+ผมขอถามอะไรหน่อยสิ
+
+91
+00:04:28,980 --> 00:04:32,000
+ผมรู้ได้ยังไงว่า IP Address ของคุณเริ่มต้นด้วยเลข 192.168.1
+
+92
+00:04:32,020 --> 00:04:36,480
+คือส่วนใหญ่แล้วนั่นคือ IP Address ของพวกคุณใช่ไหมล่ะ? ช่างน่ากลัว
+
+93
+00:04:36,570 --> 00:04:40,790
+Especially since each of these numbers
+can be any number between zero and two to
+
+94
+00:04:40,790 --> 00:04:44,350
+55. So your IP address could
+be ten three, two, one,
+
+95
+00:04:44,650 --> 00:04:47,350
+or it could even be 1, 2, 3, 4.
+
+96
+00:04:47,410 --> 00:04:52,150
+So why is it that most of your IP
+addresses start with 1 92, 1 68 1?
+
+97
+00:04:52,180 --> 00:04:53,990
+Well, there's a lot of reasons actually,
+
+98
+00:04:53,990 --> 00:04:56,470
+that I'm not gonna go into because
+it does get pretty complicated,
+
+99
+00:04:56,530 --> 00:04:59,590
+but the short and easy
+answer is that it's Oprah.
+
+100
+00:04:59,680 --> 00:05:03,340
+Oprah decided that that's what your IP
+address should be, should start with.
+
+101
+00:05:03,360 --> 00:05:04,620
+It always comes back to Oprah.
+
+102
+00:05:04,640 --> 00:05:07,820
+And the way that Oprah tells us that
+each IP address in your network in your
+
+103
+00:05:07,820 --> 00:05:12,060
+house is gonna start with 1 92, 1 6,
+8. One is through Mr. Subnet mask.
+
+104
+00:05:12,300 --> 00:05:14,620
+I told you, come gonna play
+here in a bit. Here he is.
+
+105
+00:05:14,920 --> 00:05:17,300
+He looks even weirder than
+the IP address. And honestly,
+
+106
+00:05:17,300 --> 00:05:18,660
+he's a pretty complex dude.
+
+107
+00:05:18,660 --> 00:05:21,260
+We're gonna spend a lot of time getting
+to know this guy in this series,
+
+108
+00:05:21,570 --> 00:05:22,970
+but real quick, can I show you a hack?
+
+109
+00:05:22,970 --> 00:05:25,490
+That's gonna save you like a
+billion hours. Now notice that Mr.
+
+110
+00:05:25,490 --> 00:05:28,290
+Subnet mask does look pretty
+similar to the IP address.
+
+111
+00:05:28,400 --> 00:05:31,010
+He's got four sets of
+numbers and three dots.
+
+112
+00:05:31,190 --> 00:05:34,770
+And if you assume that the first number
+in the IP address matches up to the
+
+113
+00:05:34,770 --> 00:05:38,050
+first number in the subnet mask,
+you'd be exactly right. In fact,
+
+114
+00:05:38,050 --> 00:05:40,090
+they all match up two to two to
+three to three, four to four.
+
+115
+00:05:40,270 --> 00:05:45,040
+Now here comes the hack. When you see
+2 55 in an OCTE, which by the way,
+
+116
+00:05:45,230 --> 00:05:49,520
+each of these sections separated
+by a dot, we call them octets.
+
+117
+00:05:49,620 --> 00:05:53,160
+We will dive deeper into why we
+call them that. And yeah, it's,
+
+118
+00:05:53,160 --> 00:05:56,840
+it's gonna get a lot more nerdy and so
+much more fun. I can't tell you more.
+
+119
+00:05:56,840 --> 00:05:59,480
+Just know they're called octets for
+now. Just calm down. So anyways,
+
+120
+00:05:59,480 --> 00:06:02,120
+back to the hack, if
+that number is a 2 55,
+
+121
+00:06:02,150 --> 00:06:06,040
+then we know that the corresponding number
+or the corresponding OCTE will always
+
+122
+00:06:06,950 --> 00:06:10,600
+stay the same within your network. That
+is so looking at our subnet mask here,
+
+123
+00:06:10,860 --> 00:06:14,520
+we know the first three octets. So
+the first three numbers are 2 55,
+
+124
+00:06:14,520 --> 00:06:19,230
+which tells us that the first three
+numbers in P address 1 9, 2, 1 6, 8,
+
+125
+00:06:19,530 --> 00:06:22,510
+and one will always stay
+the same in our network.
+
+126
+00:06:22,730 --> 00:06:26,430
+We can confidently say that every single
+device in your network at your house or
+
+127
+00:06:26,430 --> 00:06:31,390
+your business, if they look like this,
+they're gonna start with 1 9 2 1 6 8 1.
+
+128
+00:06:31,390 --> 00:06:33,070
+And that brings us to the
+last number over here,
+
+129
+00:06:33,610 --> 00:06:36,350
+the zero what's this guy doing
+this zero is telling us that, Hey,
+
+130
+00:06:36,460 --> 00:06:39,380
+this slot last number, it
+can be whatever you want,
+
+131
+00:06:39,860 --> 00:06:43,940
+whatever your heart's desire, as
+long at just between zero and 2 55,
+
+132
+00:06:43,960 --> 00:06:47,340
+but still whatever you want, you
+can use. 'em all. So to sum it up,
+
+133
+00:06:47,370 --> 00:06:51,540
+when you see a 2 55, that number's locked
+in, these numbers will never change,
+
+134
+00:06:51,800 --> 00:06:54,180
+but the zero tells us the
+final number totally will,
+
+135
+00:06:54,180 --> 00:06:55,660
+based on what device it's assigned to.
+
+136
+00:06:55,660 --> 00:06:59,170
+So if you'll allow me to get a bit nerdier
+and go a bit deeper in the networking
+
+137
+00:06:59,170 --> 00:06:59,510
+world,
+
+138
+00:06:59,510 --> 00:07:03,930
+we refer to these numbers right here as
+the network portion of the IP address.
+
+139
+00:07:03,990 --> 00:07:04,810
+And then on this side,
+
+140
+00:07:04,810 --> 00:07:07,130
+the side that'll change based
+on what device it's assigned to.
+
+141
+00:07:07,630 --> 00:07:10,650
+We call that the host portion because
+in networking and it, in general,
+
+142
+00:07:10,650 --> 00:07:13,370
+when we have devices on a network,
+your phone, your watch, your toilet,
+
+143
+00:07:13,710 --> 00:07:17,610
+we call those hosts. Your toilet is a
+host and it has an IP address. Now what?
+
+144
+00:07:17,610 --> 00:07:20,880
+I just put that in your pocket. Don't let
+nobody hack it. This will become very,
+
+145
+00:07:20,880 --> 00:07:23,080
+very important later, but now
+let me ask you a question.
+
+146
+00:07:23,900 --> 00:07:28,000
+Why is it important that we have to know
+the network portion of the IP address?
+
+147
+00:07:28,140 --> 00:07:32,160
+Why do we have to know that
+the IP addresses in our
+network start with 1 92 0.1
+
+148
+00:07:32,160 --> 00:07:35,640
+6, 8 1 analogy time. We can
+also think about an IP address,
+
+149
+00:07:35,870 --> 00:07:39,230
+like the address of our house. Like, you
+know, the place you and tell you what,
+
+150
+00:07:39,230 --> 00:07:41,470
+why don't you comment below your
+home address? I'm totally kidding.
+
+151
+00:07:41,480 --> 00:07:44,510
+Don't do that. Are you crazy?
+Don't do that. But anyways,
+
+152
+00:07:44,610 --> 00:07:46,630
+you live in a house in that
+house. Most of the time,
+
+153
+00:07:47,230 --> 00:07:50,070
+I think always is going
+to be on a street, right?
+
+154
+00:07:50,170 --> 00:07:52,950
+And let's say your street that
+you live on is private drive.
+
+155
+00:07:52,970 --> 00:07:53,870
+If you know where that's from,
+
+156
+00:07:53,870 --> 00:07:57,510
+comment below and because you're probably
+not the only house on private drive,
+
+157
+00:07:57,510 --> 00:08:00,020
+you can't just say, Hey, send
+me a edge on private drive.
+
+158
+00:08:00,100 --> 00:08:02,420
+I live on private drive.
+Oh, houses need windows.
+
+159
+00:08:02,580 --> 00:08:05,260
+I know it looked kind of weird. Hold on,
+let me draw some windows. So anyways,
+
+160
+00:08:05,260 --> 00:08:07,220
+we'll assign a unique house number to you.
+
+161
+00:08:07,220 --> 00:08:10,780
+So you might live at four private drive
+and your buddy might live at five and
+
+162
+00:08:10,780 --> 00:08:13,740
+then six and then 7, 8,
+9. You got it. Right?
+
+163
+00:08:13,760 --> 00:08:15,300
+So if I were to send you
+some network check coffee,
+
+164
+00:08:15,360 --> 00:08:17,060
+it would go to four private drive.
+
+165
+00:08:17,080 --> 00:08:21,130
+So I sent you some coffee and it was so
+can dang delicious that you wanted to
+
+166
+00:08:21,130 --> 00:08:24,610
+bring some over to your friend, your
+buddy Bernard, over at six private drive.
+
+167
+00:08:24,610 --> 00:08:26,090
+There's Bernard, no hang tight.
+
+168
+00:08:26,090 --> 00:08:28,290
+Here's where the analogy comes
+into play with IP addresses.
+
+169
+00:08:28,550 --> 00:08:33,050
+So would you call ups and say, Hey, I
+have some coffee. I wanna give Bernard,
+
+170
+00:08:33,159 --> 00:08:36,289
+come pick it up and take it to
+Bernard. No. Now why would you do that?
+
+171
+00:08:36,289 --> 00:08:38,009
+Bernard lives on your same street.
+
+172
+00:08:38,030 --> 00:08:40,480
+So as you're preparing to send Bernard
+some coffee, you would go, oh, Hey,
+
+173
+00:08:40,909 --> 00:08:43,559
+Bernard lives on private drive.
+
+174
+00:08:43,789 --> 00:08:48,480
+Therefore I can just walk outside and
+hand it to him because we're so stinking
+
+175
+00:08:48,480 --> 00:08:50,520
+close. We're in the same street.
+We're in the same neighborhood.
+
+176
+00:08:50,580 --> 00:08:53,400
+So if you're tracking with me
+here, this analogy feels weird.
+
+177
+00:08:53,520 --> 00:08:55,320
+I don't know why is it
+me? It's probably me.
+
+178
+00:08:55,460 --> 00:08:59,240
+If you're tracking with me the
+network portion of our IP address,
+
+179
+00:08:59,340 --> 00:09:04,240
+the thing that stays the same
+is akin to private drive and
+
+180
+00:09:04,240 --> 00:09:04,980
+the host portion.
+
+181
+00:09:04,980 --> 00:09:08,960
+The thing that does change is the
+house address the house number four,
+
+182
+00:09:09,460 --> 00:09:10,360
+or it could be five,
+
+183
+00:09:10,380 --> 00:09:13,560
+or it could be six based on who you're
+sending it to with our devices in our
+
+184
+00:09:13,560 --> 00:09:14,440
+network. It's the same for,
+
+185
+00:09:14,730 --> 00:09:16,870
+if you wanna share a picture
+from your phone to your computer,
+
+186
+00:09:16,900 --> 00:09:20,390
+your phone will look at the IP address
+of the computer and go, oh, Hey, yo,
+
+187
+00:09:20,390 --> 00:09:24,510
+we're on the same network. 1 92,
+1 68, 1 he's in my neighborhood.
+
+188
+00:09:24,630 --> 00:09:26,110
+I can just walk over and give it to him.
+
+189
+00:09:26,210 --> 00:09:28,590
+But now let's say that the
+coffee's really, really,
+
+190
+00:09:28,590 --> 00:09:32,070
+really good and Bernard wants
+to send it to his buddy. Dr.
+
+191
+00:09:32,300 --> 00:09:35,580
+Strange over here on Bleecker
+street. So Bernard and looks at Dr.
+
+192
+00:09:35,580 --> 00:09:38,220
+Strange's address. And he goes,
+okay. He Bleecker, I can't say it.
+
+193
+00:09:38,340 --> 00:09:39,660
+Bleecker street. I don't
+live on Bleecker street.
+
+194
+00:09:39,780 --> 00:09:43,700
+I can't just walk outside and hand
+coffee to Dr. Strange. In fact,
+
+195
+00:09:43,700 --> 00:09:46,660
+he lives all the way in New York. He's
+far away or maybe another dimension.
+
+196
+00:09:46,740 --> 00:09:49,700
+I don't know what what's going on.
+So Bernard realizing he needs help.
+
+197
+00:09:49,910 --> 00:09:53,260
+We'll just call ups and have them
+come pick it up and take coffee to Dr.
+
+198
+00:09:53,260 --> 00:09:56,730
+Strange. And in the same way, my
+laptop may wanna out to netflix.com,
+
+199
+00:09:56,780 --> 00:09:59,970
+which has this IP address. And it's
+in a completely different network.
+
+200
+00:10:00,350 --> 00:10:03,170
+And my laptop will go, dude.
+He's not in my network.
+
+201
+00:10:03,240 --> 00:10:05,810
+He's not in my same
+neighborhood. I need some help.
+
+202
+00:10:06,530 --> 00:10:09,690
+I need to call ups except in
+this scenario, it's not ups.
+
+203
+00:10:10,280 --> 00:10:14,730
+It's miss default gateway or
+miss default router, AKA router,
+
+204
+00:10:14,800 --> 00:10:18,640
+your computer or any on your network
+will look at it's IP address.
+
+205
+00:10:18,980 --> 00:10:21,560
+And then look at Mr.
+Subnet mask and go, huh?
+
+206
+00:10:21,820 --> 00:10:26,000
+My network is 1 9, 2, 1 60 eight.one.
+Netflix is not in my neighborhood.
+
+207
+00:10:26,400 --> 00:10:29,880
+I need help. Please help me. Miss
+default, gateway, miss default gateway.
+
+208
+00:10:30,660 --> 00:10:31,493
+She knows everything.
+
+209
+00:10:31,660 --> 00:10:34,840
+She knows exactly how to get to Netflix
+and she'll take it from there off on
+
+210
+00:10:34,840 --> 00:10:38,590
+fact, miss default gateway.
+She's actually your router.
+
+211
+00:10:39,240 --> 00:10:44,150
+She's Oprah. I know mind blown the
+entire time. Never saw it coming.
+
+212
+00:10:44,260 --> 00:10:47,710
+What a plot twist. That's some Scooby do
+stuff right there. So sum that part up.
+
+213
+00:10:48,190 --> 00:10:49,710
+Whenever any device in your network,
+
+214
+00:10:49,710 --> 00:10:51,990
+whether it's your home network
+or network at a business,
+
+215
+00:10:51,990 --> 00:10:55,070
+or pretty much any network in the world
+when it wants to talk to something,
+
+216
+00:10:55,210 --> 00:10:58,940
+not on its same street and it wants to
+talk to something outside its network.
+
+217
+00:10:59,520 --> 00:11:03,300
+It has to talk to its router.
+It's default gateway to get out.
+
+218
+00:11:03,520 --> 00:11:05,740
+It has to talk to Oprah. Write
+that down now real quick.
+
+219
+00:11:05,780 --> 00:11:08,140
+I got a challenge question for you. Let's
+see if you've been paying attention,
+
+220
+00:11:08,570 --> 00:11:11,660
+looking at my network here, which might
+be the exact same as your network.
+
+221
+00:11:11,740 --> 00:11:13,940
+I told you, this is one of the
+most common networks in the world,
+
+222
+00:11:13,940 --> 00:11:15,460
+or did I tell you that? By the way,
+
+223
+00:11:15,460 --> 00:11:17,300
+this is one of the most
+common networks in the world.
+
+224
+00:11:18,230 --> 00:11:20,610
+My kid just screamed for private networks,
+
+225
+00:11:20,610 --> 00:11:23,810
+looking at this IP address and
+looking at this subnet mask.
+
+226
+00:11:24,110 --> 00:11:28,170
+How many possible IP addresses are
+available to assign to devices in your
+
+227
+00:11:28,170 --> 00:11:29,930
+network? And by the way, if
+you could figure this out,
+
+228
+00:11:29,930 --> 00:11:31,930
+that pretty much covers
+the majority of networks.
+
+229
+00:11:32,190 --> 00:11:35,530
+I'm not sure what the statistics are,
+but I think like network Chuck's opinion,
+
+230
+00:11:35,530 --> 00:11:39,520
+like 95% of all networks
+kind of look like this.
+
+231
+00:11:39,740 --> 00:11:42,760
+So go ahead and comment your answer
+below just raw, without me telling you,
+
+232
+00:11:42,820 --> 00:11:43,800
+I'm curious what it will be,
+
+233
+00:11:43,980 --> 00:11:47,400
+but let's walk through it real quick
+and you're probably wrong. Sorry.
+
+234
+00:11:47,400 --> 00:11:51,440
+Looking at this, we know 2 55 and the
+sub mask means this number locked in,
+
+235
+00:11:51,440 --> 00:11:55,480
+stays the same. So does this one
+and this one because of the 2 55,
+
+236
+00:11:55,700 --> 00:11:56,560
+but over here is zero.
+
+237
+00:11:57,180 --> 00:12:01,440
+We know this last number can be
+anything as long as it's between
+
+238
+00:12:01,910 --> 00:12:05,840
+zero and 255, which would give us a total,
+
+239
+00:12:05,840 --> 00:12:10,440
+including zero of 256 IP
+addresses party. We get a ton,
+
+240
+00:12:10,440 --> 00:12:14,030
+but you're wrong. It's not 250 E
+six because like everything in life,
+
+241
+00:12:14,030 --> 00:12:16,710
+there's a catch. There's always
+tax. There's always extra fees.
+
+242
+00:12:16,930 --> 00:12:19,750
+You always have to look for that
+life lesson. Anyways, here we go.
+
+243
+00:12:19,750 --> 00:12:22,630
+Where's the catch. Where's the extra fees
+in our networking. Well, first of all,
+
+244
+00:12:22,630 --> 00:12:25,870
+right off the bat, there are always
+two IP addresses that are reserved,
+
+245
+00:12:25,870 --> 00:12:27,630
+that you cannot touch. You cannot use.
+
+246
+00:12:27,930 --> 00:12:31,710
+And any given network first it's the
+first IP address and your network.
+
+247
+00:12:31,930 --> 00:12:36,900
+So in this one, it would be 1 92 do
+1 68, 1 0 that one's untouchable.
+
+248
+00:12:36,900 --> 00:12:40,020
+It's referred to as the network
+address. He's a leader. He's the first,
+
+249
+00:12:40,040 --> 00:12:41,460
+the firstborn son. You can't touch him.
+
+250
+00:12:41,460 --> 00:12:45,140
+The second IP address you can't touch
+is the last IP address in your network.
+
+251
+00:12:45,440 --> 00:12:46,780
+And this particular network
+we're talking about.
+
+252
+00:12:46,810 --> 00:12:51,620
+It'd 1 92, 1 6, 8, 1 dot 2 55. This guy,
+
+253
+00:12:52,050 --> 00:12:54,690
+dude, he talks way much.
+He's a chatty, Kathy.
+
+254
+00:12:54,830 --> 00:12:57,530
+We call him the broadcast address
+because when you tell him something,
+
+255
+00:12:57,710 --> 00:13:01,010
+he tells it to everyone. Can't keep a
+secret. And that's legit what he does.
+
+256
+00:13:01,010 --> 00:13:05,130
+When you send anything to a broadcast
+address, the last IP address, any network,
+
+257
+00:13:05,670 --> 00:13:09,730
+it literally will broadcast it out to
+everybody. It's like, Hey everyone,
+
+258
+00:13:09,860 --> 00:13:13,530
+guess what? So don't tell him anything
+unless you want everyone to know.
+
+259
+00:13:13,590 --> 00:13:16,640
+So that's two, you can't touch. And
+then one you really have to think about,
+
+260
+00:13:17,300 --> 00:13:21,480
+and it might just be this default
+gateway. There has to be a router. Oh,
+
+261
+00:13:21,560 --> 00:13:22,290
+I just drove over that.
+
+262
+00:13:22,290 --> 00:13:25,920
+There has to be a router in your network
+and that will take up one IP address.
+
+263
+00:13:25,920 --> 00:13:28,600
+So we're now three IP
+addresses shy of 256,
+
+264
+00:13:28,650 --> 00:13:33,120
+which gives us a total of
+250 free usable IP addresses.
+
+265
+00:13:33,120 --> 00:13:37,270
+If you got that right, you're on your
+way to becoming a subnetting master.
+
+266
+00:13:38,030 --> 00:13:40,270
+Congrats. If you didn't,
+that's totally okay.
+
+267
+00:13:40,380 --> 00:13:44,110
+This is so brand new and can be
+very complex, but don't worry.
+
+268
+00:13:44,400 --> 00:13:48,830
+We're gonna hold hands. No, I'm gonna
+hold your hand and walk you through this.
+
+269
+00:13:49,170 --> 00:13:53,230
+So little coffee break. We
+covered so much in this video.
+
+270
+00:13:54,090 --> 00:13:54,923
+Oh, that's cold coffee.
+
+271
+00:13:55,060 --> 00:13:58,020
+That's how long I've been here recording
+it's cold coffee. Like the video.
+
+272
+00:13:58,020 --> 00:14:01,220
+Cause I just sip some cold coffee. I, I,
+ah, I need to heat it up, but anyways,
+
+273
+00:14:01,220 --> 00:14:04,020
+let's take a look. What we've
+covered so far in this video,
+
+274
+00:14:04,200 --> 00:14:08,460
+we talked about IP addresses, right? We
+talked about that. Everything in your,
+
+275
+00:14:08,570 --> 00:14:09,403
+your network,
+
+276
+00:14:09,440 --> 00:14:12,940
+in your house that wants to connect and
+talk either to other devices in your
+
+277
+00:14:12,940 --> 00:14:15,850
+network or two devices outside
+the network on the internet,
+
+278
+00:14:15,850 --> 00:14:18,890
+Netflix or just your toilet, having
+a conversation with your watch.
+
+279
+00:14:19,070 --> 00:14:23,650
+If any of that needs to happen,
+you have to have an IP address,
+
+280
+00:14:23,650 --> 00:14:25,850
+basically the cell phone
+number of your devices,
+
+281
+00:14:25,850 --> 00:14:27,290
+unless you actually have a cell phone.
+
+282
+00:14:27,440 --> 00:14:31,130
+Then it also has a cell phone number
+and an IP address. Very confusing.
+
+283
+00:14:31,250 --> 00:14:35,850
+I know Chuck get better at analogies.
+You also get a chance to meet Mr. Subnet,
+
+284
+00:14:36,360 --> 00:14:37,800
+a very complex and mysterious dude.
+
+285
+00:14:37,820 --> 00:14:40,120
+You'll get to know a lot
+better in the coming videos.
+
+286
+00:14:40,140 --> 00:14:44,400
+He also goes by net mask and he tells
+us and our devices what our IP addresses
+
+287
+00:14:44,400 --> 00:14:47,080
+and our entire network start with.
+He tells us what street we live on.
+
+288
+00:14:47,100 --> 00:14:48,040
+And this network right here,
+
+289
+00:14:48,190 --> 00:14:52,040
+this street we live on is 1 90, 2 60
+eight.one because of our little hack,
+
+290
+00:14:52,140 --> 00:14:55,200
+the 2 55 S then finally you
+met miss default gateway,
+
+291
+00:14:56,020 --> 00:14:59,920
+AKA default router or router
+or Oprah. She does it all.
+
+292
+00:14:59,920 --> 00:15:02,640
+Not only does she give all your
+devices in your network N IP address,
+
+293
+00:15:02,940 --> 00:15:05,040
+but she could help you
+get outside your network.
+
+294
+00:15:05,140 --> 00:15:08,720
+If you wanna go visit Netflix or network,
+check.com or even better network,
+
+295
+00:15:08,720 --> 00:15:10,360
+chuck.coffee. So anyways,
+
+296
+00:15:10,690 --> 00:15:14,230
+that's IP addresses and I just
+realized I spelled IP address wrong.
+
+297
+00:15:14,280 --> 00:15:18,430
+Let's add the extra D cool. We're
+good. And lemme tell you, yes,
+
+298
+00:15:18,690 --> 00:15:19,950
+we are just scratching the service.
+
+299
+00:15:20,040 --> 00:15:24,750
+We're gonna get much more complex on
+how IP addresses work in the world
+
+300
+00:15:25,490 --> 00:15:27,830
+and, and your home network
+and in your business.
+
+301
+00:15:28,010 --> 00:15:30,750
+And you'll learn that killer
+skill, that crazy awesome,
+
+302
+00:15:31,020 --> 00:15:34,020
+old that you pretty much need
+for anything in it. Subnetting,
+
+303
+00:15:34,020 --> 00:15:36,740
+because let me tell you, this example
+we've been working with here is very,
+
+304
+00:15:36,810 --> 00:15:38,460
+very simple, but don't you worry.
+
+305
+00:15:38,640 --> 00:15:41,980
+You're gonna learn the skills to
+make this crazy complex and fun.
+
+306
+00:15:42,000 --> 00:15:45,300
+And by the end, you will be a
+master chief ninja subnet master.
+
+307
+00:15:45,440 --> 00:15:49,420
+Did I say master twice? That's fine.
+This video is sponsored by manscaped.
+
+308
+00:15:49,530 --> 00:15:52,450
+Hold on. Let me make sure
+there's no one listening on beer.
+
+309
+00:15:55,070 --> 00:15:57,850
+We should be good. No little ears
+out there. All right. Listen up men.
+
+310
+00:15:58,080 --> 00:16:01,410
+This ad is for you cuz
+I got some new toys.
+
+311
+00:16:01,710 --> 00:16:05,570
+So as you may recall from my last ad or
+maybe other ads manscape is all about
+
+312
+00:16:05,570 --> 00:16:08,770
+stuff below the waist for men. Uh, yeah.
+
+313
+00:16:08,880 --> 00:16:13,800
+It's trusted over 4 million men to
+make sure everything downstairs is
+
+314
+00:16:13,800 --> 00:16:18,800
+looking good. Smelling. Good,
+good. Now manscape is going,
+
+315
+00:16:19,300 --> 00:16:20,133
+um,
+
+316
+00:16:20,660 --> 00:16:24,640
+beyond the groin with the
+brand new lineup of products,
+
+317
+00:16:24,640 --> 00:16:27,640
+they're calling this the manscaped
+ultra premium collection,
+
+318
+00:16:27,700 --> 00:16:29,520
+all those really big words.
+
+319
+00:16:29,670 --> 00:16:34,070
+This is an all in one skin care kit so
+they can got stuff for your skin and for
+
+320
+00:16:34,070 --> 00:16:39,070
+your hair. That's pretty good.
+Got some shampoo and body wash.
+
+321
+00:16:39,490 --> 00:16:43,310
+And this is the, the newest
+formulations by manscape for your, uh,
+
+322
+00:16:43,660 --> 00:16:47,870
+your butt balls and
+body all in one package.
+
+323
+00:16:48,050 --> 00:16:50,630
+The reason these ads are so awkward.
+All right, so they, they have steps.
+
+324
+00:16:50,740 --> 00:16:54,900
+What do you say? We give it a
+try. Let's do this step one.
+
+325
+00:16:54,900 --> 00:16:57,940
+I'll hop in the shower and use the
+two in one shampoo and conditioner,
+
+326
+00:16:57,940 --> 00:17:01,500
+which cleanses in nourishes with a
+luxurious lather. It's got coconut walk,
+
+327
+00:17:01,510 --> 00:17:06,500
+green tea, Allo Ric and Sage feels
+nice. Step two, we got the body wash.
+
+328
+00:17:06,760 --> 00:17:10,540
+The body Washe is a premium daily shower
+gel that's infused with Alovera and
+
+329
+00:17:10,560 --> 00:17:13,220
+sea. It's the perfect balance of tough,
+
+330
+00:17:13,220 --> 00:17:16,250
+clean and soothing hydration. Step three,
+
+331
+00:17:16,260 --> 00:17:19,330
+we're gonna RINs and towel off and then
+apply something I've never seen before.
+
+332
+00:17:19,560 --> 00:17:24,090
+Manscaped hydrating body spray. It's
+a spray on moisturizer for everyday.
+
+333
+00:17:24,240 --> 00:17:27,770
+Hydration is what it says. Got a
+360 degree delivery spray system.
+
+334
+00:17:27,869 --> 00:17:31,090
+And no we're not done yet. Step four, we
+got deodorant smells pretty dang good.
+
+335
+00:17:31,320 --> 00:17:34,360
+This stuff is stain
+free. Aluminum free eyes.
+
+336
+00:17:34,410 --> 00:17:39,080
+Clear smells fricking fantastic. And
+now type for step five manscape lip Bal.
+
+337
+00:17:39,080 --> 00:17:41,320
+You've probably never seen
+my lips. They're there,
+
+338
+00:17:41,380 --> 00:17:42,560
+but my wife says I don't have any.
+
+339
+00:17:42,560 --> 00:17:45,320
+It's got vitamin E peppermint
+and eucalyptus to help soothe,
+
+340
+00:17:45,520 --> 00:17:49,080
+hydrate and seal in moisture. All this
+stuff is cruelty free, Paran free.
+
+341
+00:17:49,220 --> 00:17:51,400
+And it's vegan now was
+five steps, five minutes.
+
+342
+00:17:51,640 --> 00:17:52,960
+Although I like to take
+my showers a bit longer.
+
+343
+00:17:53,180 --> 00:17:57,960
+So 10 minutes you can also opt in for
+the manscaped, uh, peak hygiene plan.
+
+344
+00:17:58,100 --> 00:18:00,120
+So you can make sure you never
+run outta stuff. Cuz you know,
+
+345
+00:18:02,520 --> 00:18:03,320
+I don't like going to the store,
+
+346
+00:18:03,320 --> 00:18:06,080
+just pick a plan and that
+stuff gets delivered to you
+without you thinking about
+
+347
+00:18:06,080 --> 00:18:08,360
+it. So you can focus on studying
+and IP, addressing and stuff,
+
+348
+00:18:08,770 --> 00:18:12,430
+go to manscape.com and use promo code
+network chucking at 20% off your order
+
+349
+00:18:12,500 --> 00:18:14,790
+plus receive free international
+shipping. And yeah,
+
+350
+00:18:14,790 --> 00:18:19,510
+that was 20% off with free international
+shipping with promo code network,
+
+351
+00:18:19,510 --> 00:18:22,390
+chuck@manscape.com or just
+click the link below. Thank you.
+
+352
+00:18:22,460 --> 00:18:25,550
+Manscaped for covering me
+head to toe and seriously,
+
+353
+00:18:25,550 --> 00:18:26,390
+thanks for sponsoring the video.
+
+354
+00:18:26,730 --> 00:18:28,830
+You guys should get the
+stuff cuz you sting you.
+
+355
+00:18:29,120 --> 00:18:31,700
+That's all I have explaining
+IP addressing is not easy.
+
+356
+00:18:31,840 --> 00:18:34,260
+So let's make sure you hack
+the YouTube algorithm today.
+
+357
+00:18:34,400 --> 00:18:36,380
+If that light button subscribe
+notification bell comment,
+
+358
+00:18:36,800 --> 00:18:41,100
+we gotta hack YouTube today.
+Ethically of course. And yeah,
+
+359
+00:18:41,100 --> 00:18:44,780
+that's really all I got. Whew,
+I'll get you guys next time.
+
