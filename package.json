@@ -27,7 +27,9 @@
   },
   "type": "module",
   "dependencies": {
+    "@types/node-fetch": "^2.6.6",
     "@types/youtube-player": "^5.5.8",
+    "node-fetch": "^3.3.2",
     "subtitle": "^4.2.1",
     "youtube-player": "^5.6.0"
   }

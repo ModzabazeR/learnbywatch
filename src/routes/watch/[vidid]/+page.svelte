@@ -2,15 +2,6 @@
     import VideoPlayer from "../../../components/VideoPlayer.svelte";
 	import type { PageData } from "./$types";
 
-	type SubtitleData = {
-		data: {
-			start: number;
-			end: number;
-			text: string;
-		},
-		type: string;
-	}
-
 	export let data: PageData;
 </script>
 
