@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
 import { viddata } from '../../../viddata.js';
-import type { Node } from 'subtitle';
+import type { NodeCue } from 'subtitle';
 import fetch from 'node-fetch';
 import { parse } from 'subtitle';
 
@@ -18,10 +18,10 @@ const get = async (id: string) => {
 export async function load({ params }) {
 	const vid = viddata.find((v) => v.vidid === params.vidid);
 	const inputStream = await get(params.vidid);
-	const subData: Node[] = [];
+	const subData: NodeCue[] = [];
 
 	await inputStream?.pipe(parse())
-		.on('data', (node: Node) => {
+		.on('data', (node: NodeCue) => {
 			subData.push(node)
 		})
 		.on('error', (err) => {
