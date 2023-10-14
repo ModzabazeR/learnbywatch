@@ -5,3 +5,4 @@ services:
       - "8080:5173"
     volumes:
       - .:/root/learnbywatch
+      - /root/learnbywatch/node_modules
